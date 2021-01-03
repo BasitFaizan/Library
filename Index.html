@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My library</title>
+</head>
+<style type="text/css" media="all">
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  }
+
+  html {
+    font-size: 10px;
+    
+  }
+  body{
+    height: 100vh;
+    overflow-y: scroll;
+  }
+  nav {
+    width: 100vw;
+    height: 6rem;
+    background: black;
+    display: flex;
+    position: relative;
+  }
+
+  nav .navLogo {
+    width: 100vw;
+    height: 6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  nav .navLogo img {
+    width: 7rem;
+  }
+
+  nav .navLinks {
+    top: 6rem;
+    position: fixed;
+    width: 100vw;
+    height: 0vh;
+    background: black;
+    overflow: hidden;
+    transition: 0.5s ease;
+  }
+
+  nav .navLinks.active {
+    height: 100vh;
+  }
+
+  .navbar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar span {
+    width: 4rem;
+    height: 0.5rem;
+    background: white;
+    margin-top: 0.6rem;
+    margin-right: 1rem;
+    transition: all 0.5s;
+  }
+
+  .navbar.navActive span:nth-child(1) {
+    transform: rotate(45deg) translateX(1.5rem);
+  }
+
+  .navbar.navActive span:nth-child(3) {
+    transform: rotate(-45deg) translateX(1.5rem);
+  }
+
+  .navbar.navActive span:nth-child(2) {
+    opacity: 0;
+  }
+
+  #menuItems {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #menuItems li {
+    margin-top: 3rem;
+    margin-left: 2rem;
+    list-style: none;
+    position: relative;
+    padding: 0;
+  }
+
+  #menuItems li a {
+    text-decoration: none;
+    color: white;
+    font-size: 2rem;
+  }
+
+  .subLink::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    border-style: solid;
+    border-width: 1rem;
+    border-color: transparent transparent white transparent;
+
+  }
+
+  .subLink:hover>.subLink::before {
+    transform: rotateZ(180deg);
+  }
+
+  .subMenu,
+  .down {
+    width: 70vw;
+    height: 0rem;
+    padding: 0;
+    border-left: 2px solid red;
+    position: absolute;
+    z-index: 5;
+    background: black;
+    margin-left: 3rem;
+    transition: 0.4s;
+    overflow: hidden;
+  }
+
+  .subMenu li {
+    margin-top: 0;
+  }
+
+  .subLink:hover>.subMenu {
+    height: 21rem;
+    overflow: visible;
+  }
+
+  .drop:hover>.down {
+    height: 21rem;
+  }
+
+  .btn {
+    width: 15rem;
+    height: 5rem;
+    background: red;
+    color: white;
+    display: grid;
+    border-radius: 1rem;
+    place-items: center;
+    font-size: 1.7rem;
+    transition: all 0.5s;
+    border: none;
+  }
+
+  .btn:hover {
+    background: black;
+    border: 1px solid red;
+    color: red;
+  }
+  .bookBtn{
+    width: 13rem;
+    height: 4rem;
+    margin-left: 1rem;
+    background: #0897FB;
+    color: white;
+    display: grid;
+    border-radius: 1rem;
+    place-items: center;
+    font-size: 1.7rem;
+    transition: all 0.5s;
+    border: none;
+    padding: 1rem;
+  }
+  .bookBtn:focus{
+    outline: none;
+  }
+  
+  .container{
+    width: 90vw;
+    height: 34rem;
+    display: flex;
+    flex-direction: column;
+    /*justify-content: space-around;*/
+    margin-left: 2.5rem;
+    overflow-y: visible;
+    margin-top: 1rem;
+  }
+  .form{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 5rem;
+    margin-bottom: 2rem;
+  }
+  h1{
+    margin-top: 1rem;
+  }
+  .form label{
+    font-size: 1.5rem;
+  }
+  .form #bookName,
+  .form #bookAuthor{
+    width: 30rem;
+    height: 10rem;
+    border: 3px solid rgba(225,225,225,0.5);
+    border-radius: 1rem;
+    padding: 1rem 1.4rem;
+  }
+  .form input,
+  .form input:focus{
+    outline: none;
+  }
+</style>
+
+<body>
+  <nav>
+    <div class="navLogo">
+      <img src="1608620027639.png" alt="" />
+      <div class="navbar">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    <div class="navLinks">
+      <ul id="menuItems">
+        <li><a href="#">Home</a></li>
+        <li><a href="#">About us</a></li>
+        <li><a href="#">contact us</a></li>
+        <li class="subLink">
+          <a href="#">Web development</a>
+          <ul class="subMenu">
+            <li><a href="#">HTML</a></li>
+            <li><a href="#">CSS</a></li>
+            <li><a href="#">JAVASCRIPT</a></li>
+            <li class="subLink drop"><a href="#">FRAMEWORKS</a>
+              <ul class="down">
+                <li><a href="#">BOOTSTRAP</a></li>
+                <li><a href="#">JQUERY</a></li>
+                <li><a href="#">TYPEWRITE.JS</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="btn">Login</li>
+        <li class="btn">Sign up</li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container">
+    <div class="form">
+      <label class="label">Book name</label>
+      <input type="text" id="bookName" placeholder="Add your books here" />
+    </div>
+    <div class="form">
+      <label class="label">Book Author</label>
+      <input type="text" id="bookAuthor" placeholder="Add your books here" />
+    </div>
+    <div class="form">
+      <div class="radioBtn">
+        <input type="radio" name="fiction" id="fiction" />
+        <label>Fiction</label>
+      </div>
+      <div class="radioBtn">
+        <input type="radio" name="fiction" id="Dramatic" />
+        <label>Dramatic</label>
+      </div>
+      <div class="radioBtn">
+        <input type="radio" name="fiction" id="Educational" />
+        <label>Educational</label>
+      </div>
+    </div>
+    <button class="bookBtn" type="submit">Add books</button>
+  <h1>Your books</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Book Name</th>
+        <th>Book Author</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody id="tbody"></tbody>
+  </table>
+  </div>
+  <script src="App.js" type="text/javascript" charset="utf-8"></script>
+</body>
+
+</html>
